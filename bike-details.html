@@ -1,0 +1,142 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bike Details - Dealzo</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <h1>Dealzo</h1>
+            </div>
+            <div class="nav-links">
+                <a href="home.html">Home</a>
+                <a href="#" id="login-link">Login</a>
+                <a href="#" id="register-link">Register</a>
+                <a href="#" id="guest-link">Continue as Guest</a>
+                <a href="admin.html" id="admin-link" style="display: none;">Admin</a>
+                <div class="notification-icon" id="notification-icon">
+                    <span class="notification-count" id="notification-count">0</span>
+                </div>
+                <div class="wishlist-icon" id="wishlist-icon" style="display: none;">
+                    <span class="wishlist-count" id="wishlist-count">0</span>
+                </div>
+                <div id="user-info" style="display: none; align-items: center; gap: 15px;">
+                    <span id="username-display">Welcome, </span>
+                    <button id="logout-link" class="btn-logout">Logout</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <section class="bike-details bike-details-page">
+        <div class="container">
+            <div class="bike-detail-card">
+                <div class="detail-header">
+                    <div>
+                        <p class="small-label">Bike Details</p>
+                        <h2 id="bike-name">Bike Name</h2>
+                        <p id="bike-price" class="bike-price"></p>
+                    </div>
+                    <div class="detail-actions">
+                        <a href="home.html" class="btn-secondary">Back to Bikes</a>
+                        <button id="details-chat-btn" class="btn-primary chat-btn">Chat about this bike</button>
+                    </div>
+                </div>
+
+                <div class="bike-detail-grid">
+                    <div class="bike-gallery">
+                        <img id="main-bike-image" class="main-image" src="" alt="Bike Image">
+                        <div class="thumbnail-images" id="bike-thumbnails"></div>
+                    </div>
+
+                    <div class="bike-specs">
+                        <div class="spec-grid">
+                            <div class="spec-item"><span class="spec-label">Brand</span><span id="bike-brand" class="spec-value"></span></div>
+                            <div class="spec-item"><span class="spec-label">Year</span><span id="bike-year" class="spec-value"></span></div>
+                            <div class="spec-item"><span class="spec-label">Fuel</span><span id="bike-fuel" class="spec-value"></span></div>
+                            <div class="spec-item"><span class="spec-label">KM Driven</span><span id="bike-km" class="spec-value"></span></div>
+                            <div class="spec-item"><span class="spec-label">Owner</span><span id="bike-owner" class="spec-value"></span></div>
+                            <div class="spec-item"><span class="spec-label">Mileage</span><span id="bike-mileage" class="spec-value"></span></div>
+                            <div class="spec-item"><span class="spec-label">Insurance</span><span id="bike-insurance" class="spec-value"></span></div>
+                            <div class="spec-item"><span class="spec-label">Location</span><span id="bike-location" class="spec-value"></span></div>
+                        </div>
+                        <div class="description-card">
+                            <h3>About this bike</h3>
+                            <p id="bike-description">This bike is in excellent condition and ready for the road. Login to chat with the seller and ask more questions about the bike.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div id="chat-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Chat</h3>
+                <span class="close" id="close-chat">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div id="chat-messages" class="chat-messages"></div>
+            </div>
+            <div class="chat-input">
+                <input type="text" id="chat-input-field" placeholder="Type your message...">
+                <button id="send-message">Send</button>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 Dealzo. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="js/data.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/chat.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const params = new URLSearchParams(window.location.search);
+            const bikeId = params.get('id');
+            const bike = getBikeById(bikeId);
+
+            if (!bike) {
+                document.querySelector('.bike-details .container').innerHTML = '<p style="padding: 40px; text-align: center;">Bike not found.</p>';
+                return;
+            }
+
+            document.getElementById('main-bike-image').src = bike.images[0] || 'images/placeholder.jpg';
+            document.getElementById('bike-name').textContent = bike.name;
+            document.getElementById('bike-price').textContent = formatPrice(bike.price);
+            document.getElementById('bike-brand').textContent = bike.brand;
+            document.getElementById('bike-year').textContent = bike.year;
+            document.getElementById('bike-fuel').textContent = bike.fuel;
+            document.getElementById('bike-km').textContent = bike.km;
+            document.getElementById('bike-owner').textContent = bike.owner;
+            document.getElementById('bike-mileage').textContent = bike.mileage;
+            document.getElementById('bike-insurance').textContent = bike.insurance;
+            document.getElementById('bike-location').textContent = bike.location;
+            document.getElementById('bike-description').textContent = bike.description || 'This bike is in excellent condition and ready for the road. Login to chat with the seller and ask more questions about the bike.';
+
+            const thumbnails = document.getElementById('bike-thumbnails');
+            bike.images.forEach(src => {
+                const thumb = document.createElement('img');
+                thumb.src = src;
+                thumb.className = 'thumbnail';
+                thumb.addEventListener('click', function() {
+                    document.getElementById('main-bike-image').src = src;
+                });
+                thumbnails.appendChild(thumb);
+            });
+
+            const chatBtn = document.getElementById('details-chat-btn');
+            chatBtn.dataset.bikeId = bike.id;
+        });
+    </script>
+</body>
+</html>

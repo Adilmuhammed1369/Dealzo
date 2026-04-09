@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - Dealzo</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <h1>Dealzo</h1>
+            </div>
+            <div class="nav-links">
+                <a href="index.html">Login</a>
+                <a href="register.html" class="active">Register</a>
+                <a href="#" id="guest-link">Continue as Guest</a>
+                <a href="admin.html" id="admin-link" style="display: none;">Admin</a>
+                <div class="notification-icon" id="notification-icon">
+                    <span class="notification-count" id="notification-count">0</span>
+                </div>
+                <div class="wishlist-icon" id="wishlist-icon" style="display: none;">
+                    <span class="wishlist-count" id="wishlist-count">0</span>
+                </div>
+                <div id="user-info" style="display: none; align-items: center; gap: 15px;">
+                    <span id="username-display">Welcome, </span>
+                    <button id="logout-link" class="btn-logout">Logout</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <section class="auth-section">
+        <div class="container">
+            <div class="auth-card">
+                <h2>Register</h2>
+                <div id="auth-error" class="auth-error" style="display:none"></div>
+                <form id="register-form" action="javascript:void(0);">
+                    <div class="form-group">
+                        <label for="reg-username">Username</label>
+                        <input type="text" id="reg-username" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="reg-password">Password</label>
+                        <input type="password" id="reg-password" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="reg-phone">Phone Number</label>
+                        <input type="tel" id="reg-phone" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="reg-pincode">Pincode</label>
+                        <input type="text" id="reg-pincode" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="reg-address">Address</label>
+                        <textarea id="reg-address" required></textarea>
+                    </div>
+                    <button type="submit" class="btn-primary">Register</button>
+                </form>
+                <p>Already have an account? <a href="index.html">Login here</a></p>
+            </div>
+        </div>
+    </section>
+
+    <script src="js/data.js"></script>
+    <script>
+        // Auto logout when visiting register page
+        if (getCurrentUser()) {
+            localStorage.removeItem('currentUser');
+        }
+    </script>
+    <script src="js/auth.js"></script>
+</body>
+</html>

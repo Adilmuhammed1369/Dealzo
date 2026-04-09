@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notifications - Dealzo</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <h1>Dealzo</h1>
+            </div>
+            <div class="nav-links">
+                <a href="home.html">Home</a>
+                <a href="#" id="login-link">Login</a>
+                <a href="#" id="register-link">Register</a>
+                <a href="#" id="guest-link">Continue as Guest</a>
+                <a href="admin.html" id="admin-link" style="display: none;">Admin</a>
+                <div class="notification-icon" id="notification-icon">
+                    <span class="notification-count" id="notification-count">0</span>
+                </div>
+                <div class="wishlist-icon" id="wishlist-icon" style="display: none;">
+                    <span class="wishlist-count" id="wishlist-count">0</span>
+                </div>
+                <div id="user-info" style="display: none; align-items: center; gap: 15px;">
+                    <span id="username-display">Welcome, </span>
+                    <button id="logout-link" class="btn-logout">Logout</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <section class="notifications">
+        <div class="container">
+            <h2>Your Notifications</h2>
+            <div id="notifications-list">
+                <!-- Notifications will be loaded here -->
+            </div>
+        </div>
+    </section>
+
+    <section class="notifications" id="notification-chat-section" style="display: none;">
+        <div class="container">
+            <h2>Full Chat</h2>
+            <div id="notification-chat-messages" class="chat-messages" style="min-height: 320px;"></div>
+            <div class="chat-input" style="margin-top: 16px;">
+                <input type="text" id="notification-chat-input" placeholder="Type your message..." style="width: calc(100% - 120px);">
+                <button id="notification-chat-send" class="btn-primary" style="width: 100px; margin-left: 12px;">Send</button>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 Dealzo. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="js/data.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/chat.js"></script>
+    <script src="js/main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            displayNotifications();
+            setupNotificationReply();
+        });
+    </script>
+</body>
+</html>

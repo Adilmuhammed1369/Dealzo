@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Dealzo</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <h1>Admin Dashboard</h1>
+            </div>
+            <div class="nav-links">
+                <a href="home.html">Home</a>
+                <span id="admin-username-display" style="color: #F59E0B; font-weight: 500;">Admin</span>
+                <button id="logout-link" class="btn-logout">Logout</button>
+            </div>
+        </div>
+    </nav>
+
+    <section class="admin-dashboard">
+        <div class="admin-sidebar">
+            <div class="admin-menu">
+                <button class="admin-menu-item active" data-tab="bikes">Manage Vehicles</button>
+                <button class="admin-menu-item" data-tab="chats">Chat Management</button>
+            </div>
+        </div>
+        <div class="admin-content">
+            <div id="bikes-tab" class="admin-tab active">
+                <h2>Manage Vehicles</h2>
+                <button id="add-bike-btn" class="btn-primary">Add New Vehicle</button>
+                <div class="bike-grid" id="admin-bike-grid">
+                    <!-- Bikes will be loaded here -->
+                </div>
+            </div>
+            <div id="chats-tab" class="admin-tab">
+                <div class="chat-dashboard">
+                    <div class="chat-users-list">
+                        <h3>Users</h3>
+                        <div id="users-list">
+                            <!-- Users with messages -->
+                        </div>
+                    </div>
+                    <div class="chat-conversation">
+                        <div class="chat-user-info" id="chat-user-info">
+                            <!-- User details -->
+                        </div>
+                        <div class="chat-messages" id="admin-chat-messages">
+                            <!-- Messages -->
+                        </div>
+                        <div class="chat-input">
+                            <input type="text" id="admin-chat-input" placeholder="Type your reply...">
+                            <button type="button" id="admin-send-message">Send</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Add/Edit Bike Modal -->
+    <div id="bike-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modal-title">Add New Vehicle</h3>
+                <span class="close" id="close-bike-modal">&times;</span>
+            </div>
+            <div class="modal-body">
+                <form id="bike-form">
+                    <div class="form-group">
+                        <label for="bike-name">Name</label>
+                        <input type="text" id="bike-name" required>
+                    </div>
+                <div class="form-group">
+                    <label for="bike-price">Price</label>
+                    <input type="number" id="bike-price" required>
+                </div>
+                <div class="form-group">
+                    <label for="bike-brand">Brand</label>
+                    <input type="text" id="bike-brand" required>
+                </div>
+                <div class="form-group">
+                    <label for="bike-year">Year</label>
+                    <input type="number" id="bike-year" required>
+                </div>
+                <div class="form-group">
+                    <label for="bike-fuel">Fuel Type</label>
+                    <select id="bike-fuel" required>
+                        <option value="Petrol">Petrol</option>
+                        <option value="Electric">Electric</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="bike-km">KM Driven</label>
+                    <input type="number" id="bike-km" required>
+                </div>
+                <div class="form-group">
+                    <label for="bike-owner">Owner Count</label>
+                    <input type="number" id="bike-owner" required>
+                </div>
+                <div class="form-group">
+                    <label for="bike-mileage">Mileage</label>
+                    <input type="number" id="bike-mileage" required>
+                </div>
+                <div class="form-group">
+                    <label for="bike-insurance">Insurance</label>
+                    <input type="text" id="bike-insurance" required>
+                </div>bike
+                <div class="form-group">
+                    <label for="bike-location">Location</label>
+                    <input type="text" id="bike-location" required>
+                </div>
+                <div class="form-group">
+                    <label for="bike-images">Upload Images</label>
+                    <input type="file" id="bike-images" accept="image/*" multiple required>
+                    <small>Select one or more images from your device.</small>
+                    <div id="bike-images-preview" class="image-preview-grid"></div>
+                </div>
+                <button type="submit" class="btn-primary">Save Vehicle</button>
+                    </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/data.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/chat.js"></script>
+    <script src="js/admin.js"></script>
+</body>
+</html>

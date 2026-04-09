@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dealzo - Home</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <h1>Dealzo</h1>
+            </div>
+            <div class="nav-links">
+                <a href="home.html" class="active">Home</a>
+                <a href="#" id="login-link">Login</a>
+                <a href="#" id="register-link">Register</a>
+                <a href="#" id="guest-link">Continue as Guest</a>
+                <a href="admin.html" id="admin-link" style="display: none;">Admin</a>
+                <div class="notification-icon" id="notification-icon">
+                    <span class="notification-count" id="notification-count">0</span>
+                </div>
+                <div class="wishlist-icon" id="wishlist-icon" style="display: none;">
+                    <span class="wishlist-count" id="wishlist-count">0</span>
+                </div>
+                <div id="user-info" style="display: none; align-items: center; gap: 15px;">
+                    <span id="username-display">Welcome, </span>
+                    <button id="logout-link" class="btn-logout">Logout</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Find Your Perfect Vehicle</h1>
+                <p>Discover amazing second-hand vehicles at great prices</p>
+                <div class="search-container">
+                    <input type="text" id="search-input" placeholder="Search bikes...">
+                    <button onclick="searchBikes()">Search</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="filters">
+        <div class="container">
+            <h2>Filter Vehicles</h2>
+            <div class="filter-grid">
+                <div class="filter-group">
+                    <label for="brand-filter">Brand</label>
+                    <select id="brand-filter">
+                        <option value="">All Brands</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="price-min">Min Price</label>
+                    <input type="number" id="price-min" placeholder="0">
+                </div>
+                <div class="filter-group">
+                    <label for="price-max">Max Price</label>
+                    <input type="number" id="price-max" placeholder="1000000">
+                </div>
+                <div class="filter-group">
+                    <label for="year-filter">Year</label>
+                    <select id="year-filter">
+                        <option value="">All Years</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="fuel-filter">Fuel Type</label>
+                    <select id="fuel-filter">
+                        <option value="">All Types</option>
+                        <option value="Petrol">Petrol</option>
+                        <option value="Diesel">Diesel</option>
+                        <option value="Electric">Electric</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="location-filter">Location</label>
+                    <select id="location-filter">
+                        <option value="">All Locations</option>
+                    </select>
+                </div>
+            </div>
+            <button class="btn-primary" onclick="applyFilters()">Apply Filters</button>
+        </div>
+    </section>
+
+    <section class="bike-grid" id="bike-grid">
+        <!-- Bikes will be loaded here -->
+    </section>
+
+    <section class="notifications" id="user-notifications" style="display: none;">
+        <div class="container">
+            <h2>Recent Messages</h2>
+            <div id="index-notifications-list">
+                <!-- Recent notifications will be loaded here -->
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 Dealzo. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="js/data.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
